@@ -3,6 +3,11 @@ theme = "tokyonight"
 [editor]
 line-number = "relative"
 mouse = true
+bufferline = "multiple"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
 
 [editor.indent-guides]
 render = true
@@ -14,3 +19,9 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[keys.insert]
+j = { j = "normal_mode" }
+
+[keys.normal.g]
+H = ":reset-diff-change"

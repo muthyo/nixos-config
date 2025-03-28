@@ -46,10 +46,9 @@
     # Language servers
     nil                               # Nix language server
     ruff                              # Python linter
-    ruff-lsp                          # Python language server
     nodePackages.bash-language-server # Bash language server
     nodePackages.yaml-language-server # YAML language server
-    rust-analyzer                     # Rust language server
+    marksman                          # Markdown language server
   ];
 
   # Import editor configuration
@@ -59,8 +58,8 @@
 
   # In your home.nix
   home.sessionVariables = {
-    EDITOR = "vim";
-    VISUAL = "vim";
+    EDITOR = "hx";
+    VISUAL = "hx";
   };
 
   # Starship prompt
@@ -216,7 +215,7 @@
     ];
     extraConfig = {
       core = {
-        editor = "vim";
+        editor = "hx";
       };
       init = {
         defaultBranch = "main";

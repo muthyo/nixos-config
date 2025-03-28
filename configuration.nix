@@ -105,6 +105,10 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    settings = {
+      default-cache-ttl = 3600;
+      max-cache-ttl = 36000;
+    };
   };
 
   # List services that you want to enable:
