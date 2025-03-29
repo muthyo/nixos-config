@@ -1,7 +1,13 @@
 # System-wide configurations
-{ config, lib, pkgs, bcachefsPkgs, hostname, username, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  bcachefsPkgs,
+  hostname,
+  username,
+  ...
+}: {
   # User-requested applications
   environment.systemPackages = with pkgs; [
     # Core utilities
@@ -11,8 +17,11 @@
     gnupg
     pinentry-curses
     htop
+    nh
+    nvd
+    nix-output-monitor
   ];
-  
+
   # Nix package manager configuration
   nix = {
     # Garbage collection - automatically clean up old generations
@@ -21,13 +30,13 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    
+
     # Optimize store to save disk space
     optimise = {
       automatic = true;
-      dates = [ "weekly" ];
+      dates = ["weekly"];
     };
-    
+
     # Settings for better performance
     settings = {
       auto-optimise-store = true;
@@ -42,10 +51,10 @@
       ];
     };
   };
-  
+
   # Audio configuration - keep your existing pipewire setup
   # Display servers - keep your existing X11 setup but add Hyprland
-  
+
   # Font configuration
   fonts.packages = with pkgs; [
     noto-fonts
@@ -53,11 +62,11 @@
     font-awesome
     nerd-fonts.jetbrains-mono
   ];
-  
+
   # Enable XDG desktop portal for proper app integration
   xdg.portal = {
     enable = true;
-    extraPortals = [ 
+    extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       #pkgs.xdg-desktop-portal-hyprland # commented out for now as it is included in flake.nix
     ];
