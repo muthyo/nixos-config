@@ -19,6 +19,7 @@
     htop
     nh
     nvd
+    cyme
     nix-output-monitor
   ];
 
