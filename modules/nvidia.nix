@@ -11,13 +11,12 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # For 32-bit applications
-    # Removed driSupport as it's no longer needed
   };
 
   # Consolidated NVIDIA configuration
   hardware.nvidia = {
     modesetting.enable = true;
-    open = true; # Based on your current config
+    open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     # Additional settings for better Wayland support
@@ -26,9 +25,27 @@
     # PowerMizer settings for better performance and battery life
     powerManagement = {
       enable = true;
-      # Removed finegrained = true since you don't have a hybrid graphics setup
     };
+
+    # NVreg parameters to improve suspend/resume behavior
+    nvidiaSettings = true; # Enable the nvidia-settings utility
   };
+
+  # Kernel parameters to improve NVIDIA suspend/resume behavior
+  boot.kernelParams = [
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "nvidia-drm.modeset=1"
+    "nvidia-drm.fbdev=1"
+  ];
+
+  # Disable the nvidia_uvm module during suspend/resume cycle
+  services.udev.extraRules = ''
+    # Remove NVIDIA USB xHCI Host Controller devices, if present
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{remove}="1"
+
+    # Remove NVIDIA USB Type-C UCSI devices, if present
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{remove}="1"
+  '';
 
   # Environment variables for NVIDIA + Wayland
   environment.sessionVariables = {

@@ -30,12 +30,6 @@
 
   home-manager.backupFileExtension = "backup";
 
-  ## NVIDIA stuff
-  #services.xserver.videoDrivers = [ "nvidia" ];
-  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #hardware.nvidia.modesetting.enable = true;
-  #hardware.nvidia.open = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
