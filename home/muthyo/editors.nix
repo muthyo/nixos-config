@@ -9,23 +9,11 @@
 
     # This is the important part - it pulls content from your vimrc file
     extraConfig = builtins.readFile ../dotfiles/vimrc;
-
-    # You can also add plugins if needed
-    plugins = with pkgs.vimPlugins; [
-      # Add any plugins you want here
-    ];
   };
-  home.file.".vimrc".source = ../dotfiles/vimrc;
+  # home.file.".vimrc".source = ../dotfiles/vimrc;
+  xdg.configFile.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home/dotfiles/vimrc";
 
-  # Configure Helix
+  # Configure Helix with symlinks
   programs.helix.enable = true;
-  xdg.configFile."helix/config.toml".source = ../dotfiles/helix/config.toml;
-  xdg.configFile."helix/languages.toml".source = ../dotfiles/helix/languages.toml;
-
-  # Comment out line under for future use of neovim and create the ../kickstart.nvim directory
-  # programs.neovim.enable = false;
-  # xdg.configFile."nvim" = {
-  #   source = ../kickstart.nvim;
-  #   recursive = true;
-  # };
+  xdg.configFile."helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home/dotfiles/helix";
 }
