@@ -5,12 +5,6 @@
     # Core Nix inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # For bcachefs support - uses a newer kernel
-    nixpkgs-bcachefs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Home manager for user configuration
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -27,7 +21,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-bcachefs,
     home-manager,
     hyprland,
     nixos-hardware,
@@ -36,15 +29,6 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
 
-    # For bcachefs support, use a custom pkgs with the newest kernel
-    bcachefsPkgs = import nixpkgs-bcachefs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-      overlays = [];
-    };
-
     # Get your actual hostname from your configuration
     hostname = "nixos";
     username = "muthyo";
@@ -52,7 +36,7 @@
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs hostname username bcachefsPkgs;
+        inherit inputs hostname username;
       };
       modules = [
         # Import your existing hardware configuration
@@ -60,9 +44,6 @@
 
         # Import your system configuration
         ./configuration.nix
-
-        # Import bcachefs module if needed
-        ./modules/bcachefs.nix
 
         # Enable Hyprland from flake
         hyprland.nixosModules.default
