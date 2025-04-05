@@ -1,15 +1,12 @@
-# System-wide configurations
+# Core system configuration
 {
   config,
   lib,
   pkgs,
-  hostname,
-  username,
   ...
 }: {
-  # User-requested applications
+  # Core system packages
   environment.systemPackages = with pkgs; [
-    # Core utilities
     git
     wget
     curl
@@ -21,6 +18,19 @@
     cyme
     nix-output-monitor
   ];
+
+  # Install firefox
+  programs.firefox.enable = true;
+
+  # GnuPG configuration
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    settings = {
+      default-cache-ttl = 3600;
+      max-cache-ttl = 36000;
+    };
+  };
 
   # Nix package manager configuration
   nix = {
@@ -52,22 +62,9 @@
     };
   };
 
-  # Audio configuration - keep your existing pipewire setup
-  # Display servers - keep your existing X11 setup but add Hyprland
-
-  # Font configuration
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-emoji
-    font-awesome
-    nerd-fonts.jetbrains-mono
-  ];
-
   # Enable XDG desktop portal for proper app integration
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 }
