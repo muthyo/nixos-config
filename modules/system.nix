@@ -29,6 +29,27 @@
     # Optional tools that can help with certain games
     gamemode # Optimizes system performance while gaming
     mangohud # In-game overlay for monitoring performance
+
+    # Add Heroic Launcher for Epic Games integration
+    heroic
+
+    # Wine dependencies that help with online authentication
+    winetricks
+    wine
+    wine64
+
+    # Additional utilities that help with game launchers
+    protonup-qt # For managing Proton versions
+
+    # For browser integration with launchers
+    xdg-utils
+
+    # Useful for managing browser integrations
+    xsel
+    xclip
+
+    # For handling various authentication methods
+    gnutls
   ];
 
   # Enable Steam
@@ -77,11 +98,31 @@
     nerd-fonts.jetbrains-mono
   ];
 
+  # Enable dbus for application communication
+  services.dbus.enable = true;
+
   # Enable XDG desktop portal for proper app integration
   xdg.portal = {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    config.common.default = "*";
+  };
+
+  # Optional: Allow network discovery for Epic Games services
+  networking.firewall = {
+    allowedTCPPorts = [
+      # Epic Games login and services
+      3074
+      3478
+      3479
+    ];
+    allowedUDPPorts = [
+      3074
+      3478
+      3479
     ];
   };
 
