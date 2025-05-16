@@ -56,7 +56,7 @@
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
-    FLAKE = "/home/muthyo/nixos-config";
+    NH_FLAKE = "/home/muthyo/nixos-config";
   };
 
   # Starship prompt

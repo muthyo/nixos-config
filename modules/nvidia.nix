@@ -13,6 +13,15 @@
     enable32Bit = true; # For 32-bit applications
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+      libvdpau-va-gl
+    ];
+  };
+
   # Consolidated NVIDIA configuration
   hardware.nvidia = {
     modesetting.enable = true;

@@ -20,6 +20,15 @@
     nvd
     cyme
     nix-output-monitor
+
+    # Gaming tools
+    gamescope # Helps with game rendering and performance
+    protontricks # For tweaking Proton games
+    winetricks # Useful for Wine configuration
+
+    # Optional tools that can help with certain games
+    gamemode # Optimizes system performance while gaming
+    mangohud # In-game overlay for monitoring performance
   ];
 
   # Enable Steam
@@ -27,6 +36,9 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports for Steam dedicated server
+
+    # Important: Enable hardware optimizations
+    gamescopeSession.enable = true; # Improves gaming performance
   };
 
   # Nix package manager configuration
@@ -71,5 +83,10 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
+  };
+
+  # Additional tweaks for better gaming performance
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 1048576; # Needed by some games with large memory requirements
   };
 }
