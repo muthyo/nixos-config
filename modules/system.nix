@@ -22,6 +22,13 @@
     nix-output-monitor
   ];
 
+  # Enable Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports for Steam dedicated server
+  };
+
   # Nix package manager configuration
   nix = {
     # Garbage collection - automatically clean up old generations
