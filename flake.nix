@@ -11,9 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland compositor
-    hyprland.url = "github:hyprwm/Hyprland";
-
     # Hardware-specific optimizations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
@@ -22,7 +19,6 @@
     self,
     nixpkgs,
     home-manager,
-    hyprland,
     nixos-hardware,
     ...
   } @ inputs: let
@@ -44,10 +40,6 @@
 
         # Import your system configuration
         ./configuration.nix
-
-        # Enable Hyprland from flake
-        hyprland.nixosModules.default
-        {programs.hyprland.enable = true;}
 
         # System-wide configurations and overrides
         ./modules/system.nix

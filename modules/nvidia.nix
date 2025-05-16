@@ -19,7 +19,7 @@
     open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    # Additional settings for better Wayland support
+    # Additional settings for better performance
     forceFullCompositionPipeline = true;
 
     # PowerMizer settings for better performance and battery life
@@ -47,19 +47,21 @@
     ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{remove}="1"
   '';
 
-  # Environment variables for NVIDIA + Wayland
+  # Environment variables for NVIDIA + Wayland - restored for GNOME Wayland
   environment.sessionVariables = {
     # Electron apps - Browser support
     "NIXOS_OZONE_WL" = "1";
-
-    # Hardware cursor fix for NVIDIA on Wayland
-    "WLR_NO_HARDWARE_CURSORS" = "1";
-    "GBM_BACKEND" = "nvidia-drm";
 
     # Firefox Wayland support
     "MOZ_ENABLE_WAYLAND" = "1";
 
     # For proper GLX support
     "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+
+    # For X11 acceleration when needed
+    "MOZ_USE_XINPUT2" = "1";
   };
+
+  # Explicitly enable Wayland for GNOME
+  services.xserver.displayManager.gdm.wayland = true;
 }
