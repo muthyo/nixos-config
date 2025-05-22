@@ -20,6 +20,7 @@
     nvd
     cyme
     nix-output-monitor
+    tailscale
 
     # Gaming tools
     gamescope # Helps with game rendering and performance
@@ -51,6 +52,12 @@
     # For handling various authentication methods
     gnutls
   ];
+
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+    useRoutingFeatures = "client";
+  };
 
   # Enable Steam
   programs.steam = {
