@@ -32,6 +32,9 @@
     # Discord
     vesktop
 
+    # music
+    spotify
+
     # Terminal and utilities
     kitty # Terminal
     btop # System monitoring
