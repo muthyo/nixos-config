@@ -11,16 +11,14 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # For 32-bit applications
-  };
-
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       libvdpau-va-gl
     ];
   };
+
+  # Note: hardware.opengl options have been moved to hardware.graphics
+  # The hardware.graphics section above already handles these settings
 
   # Consolidated NVIDIA configuration
   hardware.nvidia = {
@@ -34,10 +32,15 @@
     # PowerMizer settings for better performance and battery life
     powerManagement = {
       enable = true;
+      # Try setting this to false if you have freezing issues
+      finegrained = false;
     };
 
     # NVreg parameters to improve suspend/resume behavior
     nvidiaSettings = true; # Enable the nvidia-settings utility
+
+    # Disable prime offload for desktop systems (helps with gaming stability)
+    prime.offload.enableOffloadCmd = lib.mkDefault false;
   };
 
   # Kernel parameters to improve NVIDIA suspend/resume behavior
@@ -56,7 +59,7 @@
     ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{remove}="1"
   '';
 
-  # Environment variables for NVIDIA + Wayland - restored for GNOME Wayland
+  # Environment variables for NVIDIA + improved gaming compatibility
   environment.sessionVariables = {
     # Electron apps - Browser support
     "NIXOS_OZONE_WL" = "1";
@@ -69,8 +72,17 @@
 
     # For X11 acceleration when needed
     "MOZ_USE_XINPUT2" = "1";
+
+    # Additional NVIDIA gaming optimizations
+    "__GL_GSYNC_ALLOWED" = "1";
+    "__GL_VRR_ALLOWED" = "1";
+    "__GL_MaxFramesAllowed" = "1";
+
+    # Force composition pipeline off for gaming (better performance)
+    "__GL_SYNC_TO_VBLANK" = "0";
   };
 
-  # Explicitly enable Wayland for GNOME
-  services.xserver.displayManager.gdm.wayland = true;
+  # Temporarily disable Wayland for GNOME to test fullscreen gaming issues
+  # You can re-enable this later by changing false to true
+  services.xserver.displayManager.gdm.wayland = false;
 }
