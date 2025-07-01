@@ -84,5 +84,5 @@
 
   # Temporarily disable Wayland for GNOME to test fullscreen gaming issues
   # You can re-enable this later by changing false to true
-  services.xserver.displayManager.gdm.wayland = false;
+  services.displayManager.gdm.wayland = false;
 }

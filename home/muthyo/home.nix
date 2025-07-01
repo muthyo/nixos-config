@@ -23,6 +23,10 @@
     bitwarden
     bitwarden-cli
 
+    # Dev tools
+    claude-code
+    devenv
+
     # Logitech mouse
     solaar
 
