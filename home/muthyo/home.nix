@@ -19,6 +19,12 @@
     runelite
     jdk11
 
+    # Messaging
+    signal-desktop
+
+    # VPN
+    protonvpn-gui
+
     # Password manager
     bitwarden
     bitwarden-cli

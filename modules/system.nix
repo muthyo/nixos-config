@@ -57,6 +57,9 @@
     glxinfo # For OpenGL debugging
     xorg.xrandr # For display management
     steamtinkerlaunch # Advanced Steam launch options manager
+
+    # Media player
+    vlc
   ];
 
   services.tailscale = {
