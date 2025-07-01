@@ -35,7 +35,6 @@
     heroic
 
     # Wine dependencies that help with online authentication
-    winetricks
     wine
     wine64
 
@@ -60,6 +59,13 @@
 
     # Media player
     vlc
+
+    # Container management
+    podman
+    podman-compose
+
+    # Development tools
+    gh # GitHub CLI
   ];
 
   services.tailscale = {
@@ -187,7 +193,6 @@
 
     # Gaming-specific parameters
     "split_lock_detect=off" # Helps with some game compatibility
-    "mitigations=off" # Disables CPU mitigations for performance (security trade-off)
   ];
 
   # Performance governor for gaming

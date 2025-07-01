@@ -85,9 +85,7 @@
     isNormalUser = true;
     description = "muthyo";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
+    packages = with pkgs; [];
   };
 
   # Install firefox.
@@ -98,10 +96,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-  ];
+  environment.systemPackages = with pkgs; [];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -118,13 +113,8 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -132,5 +122,32 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # Enable automatic system updates for security patches
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    channel = "https://nixos.org/channels/nixos-unstable";
+  };
+
+  # Enable zswap for better memory management
+  zramSwap.enable = true;
+  boot.kernel.sysctl."vm.swappiness" = 10;
+
+  # Enable SSD optimizations
+  services.fstrim.enable = true;
+
+  # Enable systemd-oomd for better memory management
+  systemd.oomd.enable = true;
+
+  # Enable locate service for file searching
+  services.locate.enable = true;
+
+  # Enable zsh shell support
+  programs.zsh.enable = true;
+  environment.shells = with pkgs; [ bash zsh ];
+
+  # Enable direnv for development environments
+  programs.direnv.enable = true;
+
   system.stateVersion = "24.11"; # Did you read the comment?
 }
