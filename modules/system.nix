@@ -164,6 +164,9 @@
     config.common.default = "*";
   };
 
+  # Enable Flatpak
+  services.flatpak.enable = true;
+
   # Optional: Allow network discovery for Epic Games services
   networking.firewall = {
     allowedTCPPorts = [
