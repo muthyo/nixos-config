@@ -13,6 +13,7 @@
     git
     wget
     curl
+    usbutils
     gnupg
     pinentry-curses
     htop
