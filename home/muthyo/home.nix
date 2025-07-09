@@ -36,8 +36,8 @@
     # Logitech mouse
     solaar
 
-    # Terminal multiplexer (configured below)
-    # tmux
+    # Terminal multiplexer
+    tmux
 
     # Discord
     vesktop
@@ -114,35 +114,6 @@
       enable_audio_bell = false;
       background_opacity = "0.95";
     };
-  };
-
-  # Configure tmux with session persistence
-  programs.tmux = {
-    enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      resurrect # Save/restore tmux sessions
-      continuum # Automatic saving/restoring
-      sensible # Better defaults
-    ];
-    extraConfig = ''
-      # tmux-resurrect settings
-      set -g @resurrect-capture-pane-contents 'on'
-      set -g @resurrect-strategy-vim 'session'
-      set -g @resurrect-strategy-nvim 'session'
-
-      # tmux-continuum settings
-      set -g @continuum-restore 'on'
-      set -g @continuum-save-interval '15'
-
-      # Better mouse support
-      set -g mouse on
-
-      # Start windows and panes at 1, not 0
-      set -g base-index 1
-      set -g pane-base-index 1
-      set-window-option -g pane-base-index 1
-      set-option -g renumber-windows on
-    '';
   };
 
   # Configure Git
