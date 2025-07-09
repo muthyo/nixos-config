@@ -80,6 +80,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable Logitech wireless devices support
+  hardware.logitech.wireless.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.muthyo = {
     isNormalUser = true;
@@ -115,7 +118,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -142,9 +144,7 @@
   # Enable locate service for file searching
   services.locate.enable = true;
 
-  # Enable zsh shell support
-  programs.zsh.enable = true;
-  environment.shells = with pkgs; [ bash zsh ];
+  environment.shells = with pkgs; [bash];
 
   # Enable direnv for development environments
   programs.direnv.enable = true;

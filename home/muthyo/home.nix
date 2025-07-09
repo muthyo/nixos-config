@@ -45,6 +45,9 @@
     # music
     spotify
 
+    # Audio enhancement
+    jamesdsp
+
     # Terminal and utilities
     kitty # Terminal
     btop # System monitoring
