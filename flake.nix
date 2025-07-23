@@ -13,6 +13,12 @@
 
     # Hardware-specific optimizations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    # COSMIC Desktop Environment (optional)
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -20,6 +26,7 @@
     nixpkgs,
     home-manager,
     nixos-hardware,
+    nixos-cosmic,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -35,17 +42,8 @@
         inherit inputs hostname username;
       };
       modules = [
-        # Import your existing hardware configuration
-        ./hardware-configuration.nix
-
-        # Import your system configuration
-        ./configuration.nix
-
-        # System-wide configurations and overrides
-        ./modules/system.nix
-
-        # NVIDIA configurations
-        ./modules/nvidia.nix
+        # Use the modular host configuration
+        ./hosts/${hostname}/default.nix
 
         # Home-Manager as a NixOS module
         home-manager.nixosModules.home-manager

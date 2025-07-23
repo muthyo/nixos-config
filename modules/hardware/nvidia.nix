@@ -14,6 +14,16 @@
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       libvdpau-va-gl
+      # Additional OpenGL libraries for Java applications like RuneLite
+      libGL
+      libGLU
+      mesa
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      # 32-bit OpenGL libraries for RuneLite GPU plugin
+      libGL
+      libGLU
+      mesa
     ];
   };
 
