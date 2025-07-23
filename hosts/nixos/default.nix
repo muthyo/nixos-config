@@ -19,6 +19,7 @@
 
     # Desktop environment
     ../../modules/desktop/gnome.nix
+    # ../../modules/desktop/cosmic.nix  # Temporarily disabled due to hash mismatch issue #861
     ../../modules/desktop/fonts.nix
 
     # System services
