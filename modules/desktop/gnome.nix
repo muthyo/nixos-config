@@ -33,4 +33,30 @@
 
   # Enable dbus
   services.dbus.enable = true;
+
+  # Configure GNOME settings
+  programs.dconf.enable = true;
+
+  # Set GNOME window button layout
+  # The colon separates left and right side buttons
+  # Available buttons: 'close', 'minimize', 'maximize', 'menu', 'appmenu'
+  services.dbus.packages = [pkgs.dconf];
+
+  # Configure default GNOME settings
+  environment.systemPackages = with pkgs; [
+    dconf-editor
+  ];
+
+  # Set GNOME window button layout using systemd user service
+  systemd.user.services.gnome-button-layout = {
+    description = "Set GNOME window button layout";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.glib}/bin/gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'";
+      RemainAfterExit = true;
+    };
+  };
 }
