@@ -27,6 +27,9 @@
     # Hardware tools
     solaar
 
+    # Office suite
+    libreoffice
+
     # Media
     spotify
     jamesdsp
