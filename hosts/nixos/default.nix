@@ -18,8 +18,8 @@
     ../../modules/hardware/audio.nix
 
     # Desktop environment
-    ../../modules/desktop/gnome.nix
-    # ../../modules/desktop/cosmic.nix  # Temporarily disabled due to hash mismatch issue #861
+    # ../../modules/desktop/gnome.nix
+    ../../modules/desktop/cosmic.nix
     ../../modules/desktop/fonts.nix
 
     # System services
