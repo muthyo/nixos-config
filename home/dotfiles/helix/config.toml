@@ -5,6 +5,7 @@ line-number = "relative"
 mouse = true
 bufferline = "multiple"
 end-of-line-diagnostics = "hint"
+trim-trailing-whitespace = true
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
@@ -29,3 +30,15 @@ j = { j = "normal_mode" }
 
 [keys.normal.g]
 H = ":reset-diff-change"
+
+[keys.normal]
+C-g = [
+    ":write-all",
+    ":new",
+    ":insert-output lazygit",
+    ":set mouse false", # First disable mouse to hint helix into activating it
+    ":set mouse true",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]
