@@ -26,6 +26,8 @@
     xsel
     xclip
     gnutls
+    file
+    unzip
   ];
   # Enable direnv for development environments
   programs.direnv.enable = true;
