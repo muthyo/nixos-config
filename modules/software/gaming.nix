@@ -19,7 +19,7 @@
     protonup-qt
     steamtinkerlaunch
     vulkan-tools
-    glxinfo
+    mesa-demos
     xorg.xrandr
   ];
 

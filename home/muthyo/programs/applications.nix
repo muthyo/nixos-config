@@ -17,8 +17,9 @@
     protonvpn-gui
 
     # Password manager
-    bitwarden
+    bitwarden-desktop
     bitwarden-cli
+    proton-pass
 
     # Development
     claude-code
