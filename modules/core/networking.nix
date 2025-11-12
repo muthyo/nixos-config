@@ -10,4 +10,9 @@
 
   # Basic firewall
   networking.firewall.enable = true;
+
+  # Networking tools
+  environment.systemPackages = with pkgs; [
+    ethtool
+  ];
 }
