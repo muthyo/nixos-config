@@ -30,6 +30,7 @@
 
     # Office suite
     libreoffice
+    joplin-desktop
 
     # Media
     spotify
