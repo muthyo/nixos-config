@@ -12,13 +12,8 @@
   # Enable XWayland support in COSMIC
   services.desktopManager.cosmic.xwayland.enable = true;
 
-  # XDG desktop portal for screen sharing, file dialogs, etc.
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
+  # Note: XDG portals (xdg-desktop-portal-cosmic + gtk) are already
+  # configured by the COSMIC NixOS module - no manual setup needed.
 
   # Optional: Enable Flatpak for additional app support
   services.flatpak.enable = lib.mkDefault true;
