@@ -11,7 +11,14 @@
 
     # Communication
     signal-desktop
-    vesktop
+    (vesktop.overrideAttrs (old: {
+      postFixup =
+        (old.postFixup or "")
+        + ''
+          substituteInPlace $out/bin/vesktop \
+            --replace-fail "WaylandWindowDecorations" "WaylandWindowDecorations,WebRTCPipeWireCapturer"
+        '';
+    }))
 
     # VPN
     protonvpn-gui

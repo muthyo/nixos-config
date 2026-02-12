@@ -49,7 +49,6 @@
 
   # Gaming optimizations
   environment.sessionVariables = {
-    "GDK_BACKEND" = "x11";
     "__GL_SHADER_DISK_CACHE" = "1";
     "__GL_SHADER_DISK_CACHE_SKIP_CLEANUP" = "1";
     "PROTON_HIDE_NVIDIA_GPU" = "0";
