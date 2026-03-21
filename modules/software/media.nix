@@ -1,4 +1,3 @@
-# Media and entertainment software
 {
   config,
   lib,
@@ -6,10 +5,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    # Media player
     vlc
   ];
-
-  # Enable Flatpak for additional media apps
-  services.flatpak.enable = true;
+  # Flatpak is enabled via modules/desktop/cosmic.nix
 }
