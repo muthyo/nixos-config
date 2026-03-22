@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration with Hyprland";
+  description = "NixOS configuration";
 
   inputs = {
     # Core Nix inputs
@@ -14,7 +14,7 @@
     # Hardware-specific optimizations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    # COSMIC Desktop Environment (optional)
+    # COSMIC Desktop Environment
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,21 +31,20 @@
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-
-    # Get your actual hostname from your configuration
     hostname = "nixos";
     username = "muthyo";
   in {
+    # Formatter: run `nix fmt` to format all Nix files
+    formatter.${system} = pkgs.alejandra;
+
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit inputs hostname username;
       };
       modules = [
-        # Use the modular host configuration
         ./hosts/${hostname}/default.nix
 
-        # Home-Manager as a NixOS module
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
