@@ -18,13 +18,11 @@
     ../../modules/hardware/audio.nix
 
     # Desktop environment
-    # ../../modules/desktop/gnome.nix
     ../../modules/desktop/cosmic.nix
     ../../modules/desktop/fonts.nix
 
     # System services
     ../../modules/services/tailscale.nix
-    # ../../modules/services/printing.nix
     ../../modules/services/ssh.nix
 
     # Software categories (easy to enable/disable)
@@ -34,17 +32,17 @@
     ../../modules/software/browsers.nix
   ];
 
-  # Host-specific configuration
   networking.hostName = "nixos";
   time.timeZone = "Europe/Oslo";
 
-  # User configuration
+  # Logitech USB receiver support (host-specific hardware)
+  hardware.logitech.wireless.enable = true;
+
   users.users.muthyo = {
     isNormalUser = true;
     description = "muthyo";
     extraGroups = ["networkmanager" "wheel"];
   };
 
-  # Host-specific system settings
   system.stateVersion = "24.11";
 }
