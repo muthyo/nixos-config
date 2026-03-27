@@ -33,7 +33,6 @@ nixos-config/
 │   └── muthyo/                  # User-specific configs
 │       ├── home.nix             # Main home config
 │       └── programs/            # Program-specific configs
-└── lib/                         # Helper functions
 ```
 
 ## Adding New Software
