@@ -91,8 +91,4 @@
     # Force composition pipeline off for gaming (better performance)
     "__GL_SYNC_TO_VBLANK" = "0";
   };
-
-  # Temporarily disable Wayland for GNOME to test fullscreen gaming issues
-  # You can re-enable this later by changing false to true
-  services.displayManager.gdm.wayland = false;
 }

@@ -25,10 +25,6 @@
   };
 
   boot.kernelParams = [
-    # NVIDIA parameters
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    "nvidia-drm.modeset=1"
-    "nvidia-drm.fbdev=1"
     # Gaming-specific parameters
     "split_lock_detect=off"
   ];
