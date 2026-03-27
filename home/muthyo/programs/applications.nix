@@ -21,7 +21,7 @@
     }))
 
     # VPN
-    protonvpn-gui
+    proton-vpn
 
     # Password manager
     bitwarden-desktop
