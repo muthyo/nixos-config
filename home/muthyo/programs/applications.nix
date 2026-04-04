@@ -48,8 +48,8 @@
     nixd
     alejandra
     ruff
-    nodePackages.bash-language-server
-    nodePackages.yaml-language-server
+    bash-language-server
+    yaml-language-server
     marksman
   ];
 }
