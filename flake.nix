@@ -19,6 +19,12 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Claude Code (pinned to specific release tag)
+    claude-code-nix = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -27,6 +33,7 @@
     home-manager,
     nixos-hardware,
     nixos-cosmic,
+    claude-code-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -37,7 +44,6 @@
     username = "muthyo";
   in {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = {
         inherit inputs hostname username;
       };

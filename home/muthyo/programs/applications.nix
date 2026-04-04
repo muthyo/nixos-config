@@ -2,6 +2,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -29,7 +30,7 @@
     proton-pass
 
     # Development
-    claude-code
+    inputs.claude-code-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     devenv
 
     # Hardware tools
