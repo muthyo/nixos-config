@@ -10,6 +10,8 @@
     tmux
     btop
     fastfetch
+    yazi
+    tree
   ];
 
   # Kitty terminal configuration
