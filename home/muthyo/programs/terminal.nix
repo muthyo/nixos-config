@@ -12,6 +12,8 @@
     fastfetch
     yazi
     tree
+    zoxide
+    fd
   ];
 
   # Kitty terminal configuration
@@ -42,4 +44,9 @@
 
   # Bash configuration
   programs.bash.enable = true;
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+  };
 }
