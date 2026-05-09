@@ -21,7 +21,16 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-old";
+  };
+
+  systemd.services.nix-trim-generations = {
+    description = "Keep last 5 NixOS system generations";
+    before = ["nix-gc.service"];
+    wantedBy = ["nix-gc.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.nix}/bin/nix-env -p /nix/var/nix/profiles/system --delete-generations +5";
+    };
   };
 
   # Optimize store
